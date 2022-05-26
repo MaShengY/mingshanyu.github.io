@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="明山雨的blog">
+    <meta name="keywords" content="MySQL笔记, 明山雨的blog">
     <meta name="description" content="北京理工大学 | 软件工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>明山雨的blog</title>
+    <title>MySQL笔记 | 明山雨的blog</title>
     <link rel="icon" type="image/png" href="/mingshanyu.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mingshanyu.github.io/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/mingshanyu.github.io/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/mingshanyu.github.io/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">MySQL笔记</h1>
                 </div>
             </div>
         </div>
@@ -464,13 +464,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL的逻辑架构"><a href="#MySQL的逻辑架构" class="headerlink" title="MySQL的逻辑架构"></a>MySQL的逻辑架构</h2><p><img src="/mingshanyu.github.io/.%5Csql%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="sql架构图"></p>
+                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL的逻辑架构"><a href="#MySQL的逻辑架构" class="headerlink" title="MySQL的逻辑架构"></a>MySQL的逻辑架构</h2><p><strong><img src="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/sql%E6%9E%B6%E6%9E%84%E5%9B%BE.png" class title="mysql执行架构图"></strong></p>
 <h2 id="日志系统"><a href="#日志系统" class="headerlink" title="日志系统"></a>日志系统</h2><h3 id="rodo-log"><a href="#rodo-log" class="headerlink" title="rodo log"></a>rodo log</h3><p>​	<strong>InnoDB引擎层特有</strong>。	</p>
 <p>​	<strong>物理日志，记录的是“在某个数据页上做了什么修改”</strong>。</p>
 <p>​	<strong>循环写，空间固定会用完</strong>。</p>
 <p>​	当有一条记录需要更新的时候，InnoDB引擎就会先把记录写到redo log（粉板）里 面，并更新内存，这个时候更新就算完成了。同时，InnoDB引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往往是在系统比较空闲的时候做，这就像打烊以后掌柜做的 事。</p>
 <p>​	InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是 1GB，那么这块“粉板”总共就可以记录4GB的操作。从头开始写，写到末尾就又回到开头循环 写，如下面这个图所示。</p>
-<p><img src="C:\Users\71976\Desktop\mysql\redo-log.png" alt="image-20220526164239255"></p>
+<p><strong><img src="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/redo-log.png" class title="redo-log"></strong></p>
 <p>write pos是当前记录的位置，一边写一边后移，写到第3号文件末尾后就回到0号文件开头。</p>
 <p>checkpoint是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文 件。 </p>
 <p>write pos和checkpoint之间的是“粉板”上还空着的部分，可以用来记录新的操作。</p>
@@ -482,7 +482,6 @@
 <p>​	以update语句为例，</p>
 <p>​	<code>update T set c=c+1 where ID=2</code></p>
 <p>​    其执行逻辑如下：</p>
-<p><img src="/mingshanyu.github.io/.%5Credo-log.png" alt="redo-log"></p>
 <p>如上图所示，redo log的写入拆成了两个步骤，prepare 以及 commit，这就是<strong>两阶段提交</strong></p>
 <h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><p><strong>目的：为了使redo log和bin log两份日志之间的逻辑一致</strong></p>
 <p>仍然用前面的update语句来做例子。假设当前ID&#x3D;2的行，字段c的值是0，再假设执行update语句过程中在写完第一个日志后，第二个日志还没有写完期间发生了crash，会出现什么情况呢？</p>
@@ -517,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL/</a>
+                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -727,13 +726,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/mingshanyu.github.io/2022/05/26/MySQL/">
+                <a href="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/mingshanyu.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="MySQL笔记">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">MySQL笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
