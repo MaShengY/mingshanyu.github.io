@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-26
+                    2022-05-28
                 </div>
                 
 
@@ -464,13 +464,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL的逻辑架构"><a href="#MySQL的逻辑架构" class="headerlink" title="MySQL的逻辑架构"></a>MySQL的逻辑架构</h2><p><strong><img src="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/sql%E6%9E%B6%E6%9E%84%E5%9B%BE.png" class title="mysql执行架构图"></strong></p>
+                <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="MySQL的逻辑架构"><a href="#MySQL的逻辑架构" class="headerlink" title="MySQL的逻辑架构"></a>MySQL的逻辑架构</h2><p><strong><img src="/mingshanyu.github.io/2022/05/28/MySQL%E7%AC%94%E8%AE%B0/sql%E6%9E%B6%E6%9E%84%E5%9B%BE.png" class title="mysql执行架构图"></strong></p>
 <h2 id="日志系统"><a href="#日志系统" class="headerlink" title="日志系统"></a>日志系统</h2><h3 id="rodo-log"><a href="#rodo-log" class="headerlink" title="rodo log"></a>rodo log</h3><p>​	<strong>InnoDB引擎层特有</strong>。	</p>
 <p>​	<strong>物理日志，记录的是“在某个数据页上做了什么修改”</strong>。</p>
 <p>​	<strong>循环写，空间固定会用完</strong>。</p>
 <p>​	当有一条记录需要更新的时候，InnoDB引擎就会先把记录写到redo log（粉板）里 面，并更新内存，这个时候更新就算完成了。同时，InnoDB引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往往是在系统比较空闲的时候做，这就像打烊以后掌柜做的 事。</p>
 <p>​	InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是 1GB，那么这块“粉板”总共就可以记录4GB的操作。从头开始写，写到末尾就又回到开头循环 写，如下面这个图所示。</p>
-<p><strong><img src="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/redo-log.png" class title="redo-log"></strong></p>
+<p><strong><img src="/mingshanyu.github.io/2022/05/28/MySQL%E7%AC%94%E8%AE%B0/redo-log.png" class title="redo-log"></strong></p>
 <p>write pos是当前记录的位置，一边写一边后移，写到第3号文件末尾后就回到0号文件开头。</p>
 <p>checkpoint是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文 件。 </p>
 <p>write pos和checkpoint之间的是“粉板”上还空着的部分，可以用来记录新的操作。</p>
@@ -516,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/</a>
+                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/28/MySQL%E7%AC%94%E8%AE%B0/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/05/28/MySQL%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -721,18 +721,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/mingshanyu.github.io/2022/05/26/MySQL%E7%AC%94%E8%AE%B0/">
+                <a href="/mingshanyu.github.io/2022/06/01/JAVA-%E5%B9%B6%E5%8F%91/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="MySQL笔记">
+                        <img src="/mingshanyu.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="JAVA 并发">
                         
-                        <span class="card-title">MySQL笔记</span>
+                        <span class="card-title">JAVA 并发</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -742,9 +741,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-01
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -753,7 +752,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -981,9 +979,9 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2022</span>
+                <span id="year">2022</span>
             
-            <span id="year">2019</span>
+            <span id="year">2022</span>
             <a href="/mingshanyu.github.io/about" target="_blank">明山雨</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>

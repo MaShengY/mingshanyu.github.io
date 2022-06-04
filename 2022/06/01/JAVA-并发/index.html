@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, 明山雨的blog">
+    <meta name="keywords" content="JAVA 并发, 明山雨的blog">
     <meta name="description" content="北京理工大学 | 软件工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | 明山雨的blog</title>
+    <title>JAVA 并发 | 明山雨的blog</title>
     <link rel="icon" type="image/png" href="/mingshanyu.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mingshanyu.github.io/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/mingshanyu.github.io/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/mingshanyu.github.io/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tags</h1>
+                    <h1 class="description center-align post-title">JAVA 并发</h1>
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-18
+                    2022-06-01
                 </div>
                 
 
@@ -464,7 +464,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="JAVA-并发"><a href="#JAVA-并发" class="headerlink" title="JAVA 并发"></a>JAVA 并发</h2><h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p><strong>原子性</strong>：就是相关操作不会中途被其他线程干扰，一般通过同步机制实现，对于同步块内的操作，CPU必须一口气执行完，不能执行到一半就切出去去执行其他线程的操作。</p>
+<p><strong>可见性</strong>：是一个线程修改了某个共享变量，其状态能够立即被其他线程知晓，通常被解释为将线程本地状态反映到主内存上，volatile 就是负责保证可见性的</p>
+<p><strong>有序性</strong>，是保证线程内串行语义，避免指令重排等。</p>
+<h3 id="JAVA-线程"><a href="#JAVA-线程" class="headerlink" title="JAVA 线程"></a>JAVA 线程</h3><h4 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h4><p>线程状态被明确定义在其公共内部枚举类型 java.lang.Thread.State </p>
+<p><strong>新建（NEW）</strong>，表示线程被创建出来还没真正启动的状态，可以认为它是个 Java 内部状态。</p>
+<p><strong>就绪（RUNNABLE）</strong>，表示该线程已经在 JVM 中执行，当然由于执行需要计算资源，它可能是正在运行，也可能还在等待系统分配给它 CPU 片段，在就绪队列里面排队。</p>
+<p><strong>阻塞（BLOCKED）</strong>，这个状态和我们前面两讲介绍的同步非常相关，阻塞表示线程在等待 Monitor lock。</p>
+<p><strong>等待（WAITING）</strong>，表示正在等待其他线程采取某些操作，其中Thread.join()会使线程进入等待状态。</p>
+<p><strong>计时等待（TIMED_WAIT）</strong>，其进入条件和等待状态类似，但是调用的是存在超时条件的方法，比如 wait 或 join 等方法的指定超时版本，如下面示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title function_">wait</span><span class="params">(<span class="type">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException;</span><br></pre></td></tr></table></figure>
+
+<p><strong>终止（TERMINATED）</strong>，不管是意外退出还是正常执行结束，线程已经完成使命，终止运行，也有人把这个状态叫作死亡。</p>
+<p>Java 的线程是<strong>不允许启动两次</strong>的，第二次调用必然会抛出 IllegalThreadStateException，这是一种运行时异常，多次调用 start 被认为是编程错误。在第二次调用 start() 方法的时候，线程可能处于终止或者其他（非 NEW）状态，但是不论如何，都是不可以再次启动的。</p>
+<p>状态和方法对应图：</p>
+<p>**</p>
+
                 
             </div>
             <hr/>
@@ -490,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/tags/index.html">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/tags/index.html</a>
+                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/06/01/JAVA-%E5%B9%B6%E5%8F%91/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/06/01/JAVA-%E5%B9%B6%E5%8F%91/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -695,18 +710,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/mingshanyu.github.io/tags/index.html">
+                <a href="/mingshanyu.github.io/2022/06/02/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/mingshanyu.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="软件架构">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">软件架构</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -716,9 +730,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -727,7 +741,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -735,16 +748,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/mingshanyu.github.io/tags/index.html">
+                <a href="/mingshanyu.github.io/2022/05/28/MySQL%E7%AC%94%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/mingshanyu.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="MySQL笔记">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">MySQL笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -755,7 +768,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
                             </span>
                         <span class="publish-author">
                             
@@ -765,7 +778,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

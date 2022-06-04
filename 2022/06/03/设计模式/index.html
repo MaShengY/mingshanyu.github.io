@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, 明山雨的blog">
+    <meta name="keywords" content="设计模式, 明山雨的blog">
     <meta name="description" content="北京理工大学 | 软件工程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | 明山雨的blog</title>
+    <title>设计模式 | 明山雨的blog</title>
     <link rel="icon" type="image/png" href="/mingshanyu.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/mingshanyu.github.io/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tags</h1>
+                    <h1 class="description center-align post-title">设计模式</h1>
                 </div>
             </div>
         </div>
@@ -443,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-18
+                    2022-06-03
                 </div>
                 
 
@@ -464,7 +464,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式的实现有很多种</p>
+<h3 id="双检锁"><a href="#双检锁" class="headerlink" title="双检锁"></a>双检锁</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="type">Singleton</span> <span class="variable">singleton</span> <span class="operator">=</span> <span class="literal">null</span>;<span class="comment">//volatile 禁止代码重排序</span></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getSingleton</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123; <span class="comment">// 尽量避免进入同步块代码，提高代码运行效率</span></span><br><span class="line">          <span class="keyword">synchronized</span> (Singleton.class) &#123; <span class="comment">// 加锁</span></span><br><span class="line">              <span class="keyword">if</span> (singleton == <span class="literal">null</span>) &#123; <span class="comment">//再次检查，多线程模式下，可能线程b执行到此时，线程a已经创建完对象，所以需要再次判断</span></span><br><span class="line">                  singleton = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> singleton;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>singleton = new Singleton();</code> 并非一个原子操作，其大致可以分为以下几步：</p>
+<ul>
+<li>在栈空间创建引用地址</li>
+<li>在堆空间为对象分配内存以及完成对象初始化</li>
+<li>将引用地址赋给左侧<code>singleton</code>变量</li>
+</ul>
+<p>假设一个线程调用<code>getSingleton()</code>方法，进行if判断时，若另外一个线程之前执行<code>singleton = new Singleton()</code>，由于重排序存在，可能会出现在栈空间创建引用地址后，将引用值赋值给左侧存储变量，但是对象并没有实例化完成，因CPU调度时间片耗尽而产生中断。</p>
+<p>该线程就会检测到<code>instance</code>变量不为空，则直接使用。因为单例对象并为实例化完成，直接使用会带来意想不到的结果。</p>
+
                 
             </div>
             <hr/>
@@ -490,7 +501,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/tags/index.html">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/tags/index.html</a>
+                    <a href="https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/06/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">https://mashengy.github.io/mingshanyu.github.io/mingshanyu.github.io/2022/06/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -700,13 +711,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/mingshanyu.github.io/tags/index.html">
+                <a href="/mingshanyu.github.io/2022/06/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/mingshanyu.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">设计模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -717,7 +728,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-03
                             </span>
                         <span class="publish-author">
                             
@@ -735,16 +746,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/mingshanyu.github.io/tags/index.html">
+                <a href="/mingshanyu.github.io/2022/06/02/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/mingshanyu.github.io/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/mingshanyu.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="软件架构">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">软件架构</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -755,7 +766,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
                             </span>
                         <span class="publish-author">
                             
@@ -765,7 +776,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
